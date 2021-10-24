@@ -10,4 +10,7 @@ import cl.bci.apirest.usuario.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 	@Query(value = "SELECT count(email) FROM USUARIO WHERE EMAIL = ?1 ", nativeQuery = true)
 	int countEmail(String email);
+	
+	@Query(value = "SELECT ID_USUARIO FROM USUARIO WHERE EMAIL = ?1 AND PASSWORD = ?2", nativeQuery=true)
+	int getIdUsuario(String email, String password);
 }

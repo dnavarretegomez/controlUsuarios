@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="phone")
@@ -23,10 +23,6 @@ public class Phone {
 	private int citycode;
 	@Column(name="contrycode",length = 3)
 	private int contrycode;
-	
-	@ManyToOne
-	@JoinColumn(name = "FK_USUARIO", nullable = false, updatable = false)
-	private Usuario fkUsuario;
 	
 	public int getIdPhone() {
 		return idPhone;
@@ -51,12 +47,6 @@ public class Phone {
 	}
 	public void setContrycode(int contrycode) {
 		this.contrycode = contrycode;
-	}
-	public Usuario getFkUsuario() {
-		return fkUsuario;
-	}
-	public void setFkUsuario(Usuario fkUsuario) {
-		this.fkUsuario = fkUsuario;
 	}
 	
 	

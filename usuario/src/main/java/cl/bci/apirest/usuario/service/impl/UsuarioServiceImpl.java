@@ -13,11 +13,11 @@ import cl.bci.apirest.usuario.model.Auditoria;
 import cl.bci.apirest.usuario.model.Phone;
 import cl.bci.apirest.usuario.model.Usuario;
 import cl.bci.apirest.usuario.repository.AuditoriaRepository;
-import cl.bci.apirest.usuario.repository.PhoneRepository;
 import cl.bci.apirest.usuario.repository.UsuarioRepository;
 import cl.bci.apirest.usuario.request.RegistroSistemaRequest;
 import cl.bci.apirest.usuario.response.DatosRegistroResponse;
 import cl.bci.apirest.usuario.response.MensajeResponse;
+import cl.bci.apirest.usuario.response.ObtenerUsuariosResponse;
 import cl.bci.apirest.usuario.response.RegistroSistemaResponse;
 import cl.bci.apirest.usuario.service.UsuarioService;
 
@@ -26,9 +26,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
-	//@Autowired
-	//private PhoneRepository phoneRepository;
 	
 	@Autowired
 	private AuditoriaRepository auditoriaRepository;
@@ -58,7 +55,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 							phone.setNumber(request.getPhones().get(i).getNumber());
 							phone.setCitycode(request.getPhones().get(i).getCitycode());
 							phone.setContrycode(request.getPhones().get(i).getContrycode());
-							phone.setFkUsuario(usuario);
+							//phone.setFkUsuario(usuario);
 							phones.add(phone);
 						}
 						// guardo usuario
@@ -114,6 +111,34 @@ public class UsuarioServiceImpl implements UsuarioService{
 		}
 		response.setDatos(datosResponse);
 		response.setMensaje(mensajeResponse);
+		return response;
+	}
+
+	@Override
+	public ObtenerUsuariosResponse getAllUsuario(String token) {
+		List<Usuario> usuarios = new ArrayList<>();
+		Auditoria auditoria = new Auditoria();
+		ObtenerUsuariosResponse response = new ObtenerUsuariosResponse();
+		MensajeResponse mensaje = new MensajeResponse();
+		try {
+			auditoria = auditoriaRepository.validateToken(token);
+			if (auditoria.isIsactive() == false) {
+				usuarios = null;
+				mensaje.setCodigo(404);
+				mensaje.setMensaje("El token informado no existe o no se encuentra activo");
+			} else {
+				usuarios = usuarioRepository.findAll();
+				mensaje.setCodigo(200);
+				mensaje.setMensaje("Operacion Exitosa");
+			}
+			response.setUsuarios(usuarios);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			usuarios = null;
+			mensaje.setCodigo(404);
+			mensaje.setMensaje("El token informado no existe o no se encuentra activo");
+		}
+		response.setMensaje(mensaje);
 		return response;
 	}
 }

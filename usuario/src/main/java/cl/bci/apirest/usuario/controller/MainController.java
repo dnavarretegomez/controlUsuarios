@@ -1,11 +1,16 @@
 package cl.bci.apirest.usuario.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.bci.apirest.usuario.request.LoginRequest;
+import cl.bci.apirest.usuario.response.LoginResponse;
 import cl.bci.apirest.usuario.response.LogoutResponse;
 import cl.bci.apirest.usuario.response.ValidateTokenResponse;
 import cl.bci.apirest.usuario.service.MainService;
@@ -22,8 +27,12 @@ public class MainController {
 		return mainService.validateToken(token);
 	}
 	
-	@GetMapping(path = "logout")
+	@DeleteMapping(path = "logout")
 	public LogoutResponse logout(@RequestHeader("token") String token) {
 		return mainService.logout(token);
+	}
+	@PostMapping(path = "/login")
+	public LoginResponse login(@RequestBody LoginRequest request) {
+		return mainService.login(request);
 	}
 }

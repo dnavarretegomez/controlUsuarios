@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -25,6 +27,7 @@ public class Usuario {
 	@Column(name="password", nullable = false)
 	private String password;
 	
+	@JsonIgnoreProperties
 	@OneToMany(cascade= CascadeType.ALL)
 	private List<Phone> phones;
 	
