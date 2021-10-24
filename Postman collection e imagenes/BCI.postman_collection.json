@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "0e6bb534-e2fb-4874-b47a-a5f5a11eb5a1",
+		"name": "BCI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "registro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"David Navarrete\",\r\n    \"email\": \"d.navarreteg72@gmail.cl\",\r\n    \"password\": \"Nacho1236@\",\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"31923076\",\r\n            \"citycode\": \"9\",\r\n            \"contrycode\": \"56\"\r\n        },\r\n        {\r\n            \"number\": \"31923555\",\r\n            \"citycode\": \"9\",\r\n            \"contrycode\": \"56\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuario/registro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"registro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registro Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rodrigo Castillo\",\r\n    \"email\": \"rcastillo@gmail.cl\",\r\n    \"password\": \"Rcastillo123@\",\r\n    \"phones\": [\r\n        {\r\n            \"number\": \"31923073\",\r\n            \"citycode\": \"9\",\r\n            \"contrycode\": \"56\"\r\n        },\r\n        {\r\n            \"number\": \"31923666\",\r\n            \"citycode\": \"9\",\r\n            \"contrycode\": \"56\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuario/registro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"registro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "ade67a7b-81ae-42e5-855e-e535e378b3f5",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/usuario/getUsuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"getUsuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validateToken",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "ade67a7b-81ae-42e5-855e-e535e378b3f5aaa",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/Main/validateToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Main",
+						"validateToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "dd6d8a1e-e77e-43da-afb4-0423b850cb85",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/Main/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Main",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"d.navarreteg72@gmail.cl\",\r\n    \"password\":\"Nacho1236@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/Main/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Main",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
